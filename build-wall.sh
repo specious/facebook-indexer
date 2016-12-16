@@ -8,7 +8,7 @@
 mkdir -p images
 
 while read url; do
-  # Render a dot for every image request
+  # Print a dot to stderr for every image request
   (>&2 echo -n ".")
 
   # Extract page id from page URL
@@ -17,8 +17,11 @@ while read url; do
   # Compose URL to retrieve profile picture
   imgurl="http://graph.facebook.com/$id/picture?type=large"
 
-  # Fetch image (follow redirects)
-  curl -s -L -o "images/$id" $imgurl
+  # Fetch image (async; follow redirects)
+  curl -s -L -o "images/$id" $imgurl &
 
   echo "<a href=\"$url\"><img src=\"images/$id\"></a>"
 done < "${1:-/dev/stdin}"
+
+# Wait for fetches to finish
+wait
