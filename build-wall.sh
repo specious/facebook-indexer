@@ -3,7 +3,7 @@
 # Usage:
 #   facebook-cli likes > likes.txt
 #   awk 'NR % 3 == 2' likes.txt > urls.txt
-#   cat urls.txt | ./buildwall.sh > wall.html
+#   cat urls.txt | ./buildwall.sh > index.html
 
 mkdir -p images
 
@@ -15,7 +15,7 @@ while read url; do
   id=$(echo $url | cut -d '/' -f 4)
 
   # Compose URL to retrieve profile picture
-  imgurl="http://graph.facebook.com/$id/picture?type=large"
+  imgurl="http://graph.facebook.com/$id/picture?height=${2:-180}"
 
   # Fetch image (async; follow redirects)
   curl -s -L -o "images/$id" $imgurl &
