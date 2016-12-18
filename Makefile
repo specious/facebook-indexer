@@ -10,7 +10,7 @@ prepare: check-deps
 	awk 'NR % 3 == 2' likes.txt > urls.txt
 
 wall:
-	./build-wall.sh urls.txt > index.html
+	./build-wall.sh urls.txt $(ICON_HEIGHT) > index.html
 	rm -f likes.txt urls.txt
 	@echo Done! Open index.html in your browser.
 
