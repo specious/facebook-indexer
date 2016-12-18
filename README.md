@@ -1,5 +1,7 @@
 Build a wall of your favorite Facebook pages.
 
+![Screenshot](https://raw.githubusercontent.com/specious/facebook-wall/master/screenshot.png)
+
 ## Instructions
 
 First install and configure [facebook-cli](https://github.com/specious/facebook-cli). Then run:
