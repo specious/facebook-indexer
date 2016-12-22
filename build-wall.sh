@@ -18,7 +18,7 @@ while read url; do
   imgurl="http://graph.facebook.com/$id/picture?height=${2:-180}"
 
   # Fetch image (async; follow redirects)
-  curl --connect-timeout 30 -sLo "images/$id" $imgurl &
+  curl --max-time 30 -sLo "images/$id" $imgurl &
 
   echo "<a href=\"$url\"><img src=\"images/$id\"></a>"
 done < "${1:-/dev/stdin}"

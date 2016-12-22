@@ -1,4 +1,4 @@
-all: prepare wall
+all: prepare build
 
 check-deps:
 	@command -v facebook-cli >/dev/null 2>&1 || \
@@ -9,8 +9,9 @@ prepare: check-deps
 	facebook-cli likes > likes.txt
 	awk 'NR % 3 == 2' likes.txt > urls.txt
 
-wall:
+build:
 	./build-wall.sh urls.txt $(ICON_HEIGHT) > index.html
+	@echo
 	rm -f likes.txt urls.txt
 	@echo Done! Open index.html in your browser.
 
