@@ -2,7 +2,7 @@ all: prepare build
 
 check-deps:
 	@command -v facebook-cli >/dev/null 2>&1 || \
-		{ echo >&2 "Please install and configure facebook-cli before continuing"; \
+		{ echo >&2 "Please install and configure facebook-cli >=1.5.0 before continuing"; \
 			exit 1; }
 
 prepare: check-deps

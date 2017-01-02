@@ -1,6 +1,8 @@
 #!/bin/bash
 #
-# Usage:
+# Usage: $0 <urls-file> <pic-height>
+#
+# E.g.:
 #   facebook-cli likes > likes.txt
 #   awk 'NR % 3 == 2' likes.txt > urls.txt
 #   cat urls.txt | ./build-wall.sh > index.html
@@ -20,7 +22,10 @@ while read url; do
   # Fetch image (async; follow redirects)
   curl --max-time 30 -sLo "images/$id" $imgurl &
 
-  echo "<a href=\"$url\"><img src=\"images/$id\"></a>"
+  # Resolve Facebook page name
+  name=$(facebook-cli api --get name "$id")
+
+  echo "<a href=\"$url\"><img src=\"images/$id\" title=\"$name\"></a>"
 done < "${1:-/dev/stdin}"
 
 # Wait for fetches to finish

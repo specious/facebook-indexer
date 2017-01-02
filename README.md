@@ -1,4 +1,4 @@
-Build a wall of your favorite Facebook pages.
+Browse and share your favorite Facebook pages.
 
 ![Screenshot](https://raw.githubusercontent.com/specious/facebook-wall/master/screenshot.png)
 
