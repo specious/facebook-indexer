@@ -9,8 +9,11 @@ prepare: check-deps
 	facebook-cli likes > likes.txt
 	awk 'NR % 3 == 2' likes.txt > urls.txt
 
+FORMAT ?= html
+ICON_HEIGHT ?= 180
+
 build:
-	./build-wall.sh urls.txt $(ICON_HEIGHT) > index.html
+	./build-wall.sh -i urls.txt -f $(FORMAT) -s $(ICON_HEIGHT) > index.$(FORMAT)
 	@echo
 	rm -f likes.txt urls.txt
 	@echo Done! Open index.html in your browser.
